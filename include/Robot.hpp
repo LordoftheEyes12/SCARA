@@ -1,3 +1,10 @@
+#include <Arduino.h>
+#include <math.h>
+#include <WiFi.h>
+#include <WebServer.h>
+#include "pindef.hpp"
+#include "definitions.hpp"
+
 bool homeMotor(Motor motor, int end);
 
 int prepPins(void);
@@ -20,9 +27,8 @@ typedef enum status_robot
 
 typedef struct targetAngles
 {
-    int base;
-    int arm;
-    int z_axis;
+    float base;
+    float arm;
 };
 
 int homingProcedure(void);
@@ -39,7 +45,21 @@ typedef struct length
 
 typedef struct Position
 {
-    int x;
-    int y;
-    int z;
+    float x;
+    float y;
+    float z;
 };
+
+typedef struct Credentials
+{
+    String ssid;
+    String password;
+};
+
+bool startServer(Credentials credentials);
+
+void handleRoot();
+void handleFormSubmit();
+void startWebServerTask(void *pvParameters);
+
+int movetoPos(Position currPos, Position targetPos, Motor motor1, Motor motor2);

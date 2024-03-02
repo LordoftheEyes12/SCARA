@@ -1,7 +1,6 @@
 #include "Robot.hpp"
-#include <Arduino.h>
-#include <math.h>
-length Arm = {200, 150};
+
+
 bool homeMotor(Motor motor, int end)
 {
     int stp = motor.step_pin;
@@ -98,4 +97,17 @@ bool moveDeg(Motor motor, int deg)
         moveDeg(motor2, delta_theta2);
 
         return 0;
+    }
+
+    bool startServer(Credentials credentials)
+    {
+        WiFi.begin(credentials.ssid, credentials.password);
+        while (WiFi.status() != WL_CONNECTED)
+        {
+            delay(1000);
+            Serial.println("Connecting to WiFi...");
+        }
+        Serial.println("Connected to WiFi");
+        return true;
+
     }
