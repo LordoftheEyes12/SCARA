@@ -8,3 +8,13 @@
 
 #define Motor3_Step_Pin 18
 #define Motor3_Dir_Pin 19
+
+#define Endstop1_Pin 21
+#define Endstop2_Pin 22
+#define Endstop3_Pin 23
+
+#define LimitSwitch1_Pin 25
+#define LimitSwitch2_Pin 26
+#define LimitSwitch3_Pin 27
+
+#define stepper_enable 14

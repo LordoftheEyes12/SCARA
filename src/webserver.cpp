@@ -1,7 +1,7 @@
 #include "Robot.hpp"
-WebServer server(80);
 
-Position positions = {0.0, 0.0, 0.0};
+
+Position positions_web = {0.0, 0.0, 0.0};
 
 void startWebServerTask(void *pvParameters)
 {
@@ -32,11 +32,11 @@ void handleRoot()
 
 void handleFormSubmit()
 {
-    positions.x = server.arg("input1").toFloat();
-    positions.y = server.arg("input2").toFloat();
-    positions.z = server.arg("input3").toFloat();
+    positions_web.x = server.arg("input1").toFloat();
+    positions_web.y = server.arg("input2").toFloat();
+    positions_web.z = server.arg("input3").toFloat();
 
-    Serial.println("Received Positions:");
+    Serial.println("Received positions_web:");
     server.send(200, "text/html", "Submission received. <a href=\"/\">Return to form</a>");
-    movetoPos(current_position, positions, motor1, motor2);
+    movetoPos(current_position, positions_web, motor1, motor2);
 }

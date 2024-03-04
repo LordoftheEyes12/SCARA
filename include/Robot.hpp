@@ -9,7 +9,7 @@ bool homeMotor(Motor motor, int end);
 
 int prepPins(void);
 
-bool moveDeg(int deg, int stp, int dir);
+bool moveDeg(Motor motor, float deg);
 
 typedef struct Motor
 {
@@ -20,8 +20,10 @@ typedef struct Motor
 
 typedef enum status_robot
 {
+    
     STANDING_STILL,
     MOVING,
+    CALIBRATING,
     ERROR
 };
 
@@ -63,3 +65,7 @@ void handleFormSubmit();
 void startWebServerTask(void *pvParameters);
 
 int movetoPos(Position currPos, Position targetPos, Motor motor1, Motor motor2);
+
+int moveZ(float z);
+
+int homingProcedure(void);
